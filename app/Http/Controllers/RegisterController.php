@@ -53,6 +53,7 @@ class RegisterController extends BaseController
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
+            $success['role_id'] =  $user->role_id;
    
             return $this->sendResponse($success, 'User login successfully.');
         } 
@@ -63,12 +64,28 @@ class RegisterController extends BaseController
 
     }
 
-           public function abc(Request $request)
+           public function registeredUser(Request $request)
     {
-       return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+    
+       return response()->json(['name' => 'zahidUser', 'status' => 'User']);
 
 
     }
+
+    
+    public function vendor(Request $request)
+    {
+       return response()->json(['name' => 'zahidVendor', 'status' => 'Vendor']);
+
+    }
+
+    public function superAdmin(Request $request)
+    {
+       return response()->json(['name' => 'zahidSuperAdmin', 'status' => 'SuperAdmin']);
+
+    }
+
+
 
 
 
