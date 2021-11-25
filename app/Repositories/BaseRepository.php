@@ -26,7 +26,9 @@ abstract class BaseRepository
 
     public function find( $id)
     {
+        // return $this->entity::with('category')->findOrFail($id);
         return $this->entity::findOrFail($id);
+        
     }
 
     public function remove(int $id): bool

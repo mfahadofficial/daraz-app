@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned()->default('1');
             $table->string('name');
+            $table->string('image')->default('/aromaStyle/img/product/product1.png');
             $table->string('price');
             $table->text('detail');
             $table->timestamps();

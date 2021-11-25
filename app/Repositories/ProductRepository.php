@@ -13,7 +13,7 @@ class ProductRepository extends BaseRepository
 
     public function allProduct(string $sortBy = 'created_at', string $sortOrder = 'desc')
     {
-        return $this->entity::orderBy($sortBy, $sortOrder)
+        return $this->entity::with('category')->orderBy($sortBy, $sortOrder)
             ->get();
     }
 
@@ -82,7 +82,7 @@ class ProductRepository extends BaseRepository
 
     public function search($tern)
     {
-        return $this->entity::Where('category_id', 'like', "%{$tern}%")->get();
+        return $this->entity::Where('category_id', 'like', "%{$tern}%")->orWhere('name', 'like', "%{$tern}%")->get();
     }
 
 }

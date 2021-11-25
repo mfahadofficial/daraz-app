@@ -45,6 +45,32 @@ class ProductService extends BaseService
                 'message' => $validator->errors()->all()[0]
             ]);
 
+
+
+
+
+
+            $input = $request->all();
+  
+            if ($image = $request->file('image')) {
+                $destinationPath = 'image/';
+                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $input['image'] = "$profileImage";
+            }
+        
+            // Product::create($input);
+
+
+
+
+
+
+
+
+
+
+
         $product = $this->create($request->except('_token'));
 
         if (!is_null($product))
@@ -102,6 +128,7 @@ class ProductService extends BaseService
 
     public function getList($tern = NULL)
     {
+        return response()->json(['name' => 'Abigail', 'state' => 'CA']);
         $array = [
             'results' => []
         ];
