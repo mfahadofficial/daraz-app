@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Product;
 use App\Repositories\ProductRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
 use Image;
@@ -128,12 +129,33 @@ class ProductService extends BaseService
 
     public function getList($tern = NULL)
     {
-        return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+        // return response()->json(['name' => 'Abigail', 'state' => 'CA']);
         $array = [
             'results' => []
         ];
 
         $products = is_null($tern) ? $this->all() : $this->repository->search($tern);
+
+        foreach ($products as $item) {
+            $array['results'][] = [
+                'text' => $item->id . " | " . $item->title,
+                'id' => $item->id,
+            ];
+        }
+
+        return response()->json($products);
+    }
+
+
+    public function vendorProducts()
+    {
+        // return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+        $array = [
+            'results' => []
+        ];
+       $user_id =  Auth::user()->id;
+
+       $products = $this->repository->vendorProducts($user_id);
 
         foreach ($products as $item) {
             $array['results'][] = [

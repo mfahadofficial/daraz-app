@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController as BaseController;
 use App\Services\ProductService;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use Validator;
 
@@ -75,5 +74,11 @@ class ProductController extends Controller
         // $product->delete();
    
         // return $this->sendResponse([], 'Product deleted successfully.');
+    }
+
+    public function vendorProducts(){
+        // return ('test');
+
+        return $this->productService->vendorProducts();
     }
 }

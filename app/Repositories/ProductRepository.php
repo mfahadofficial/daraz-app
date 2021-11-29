@@ -82,7 +82,13 @@ class ProductRepository extends BaseRepository
 
     public function search($tern)
     {
-        return $this->entity::Where('category_id', 'like', "%{$tern}%")->orWhere('name', 'like', "%{$tern}%")->get();
+        return $this->entity::Where('category_id', 'like', "%{$tern}%")->orWhere('name', 'like', "%{$tern}%")
+        ->orWhere('user_id', '=', "%{$tern}%")->get();
+    }
+
+    public function vendorProducts($user_id)
+    {
+        return $this->entity::Where('user_id', '=', "$user_id")->get();
     }
 
 }

@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:api', 'RegisterUser']], function () {
 Route::group(['middleware' => ['auth:api', 'Vendor']], function () {
 
     Route::get('vendor', [RegisterController::class, 'vendor']);
+    Route::get('vendorProducts', [ProductController::class, 'vendorProducts']);
 
 });
 
